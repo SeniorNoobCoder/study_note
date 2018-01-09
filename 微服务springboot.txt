@@ -1,0 +1,87 @@
+基本思路——什么是微服务？
+a)        强调功能趋向单一
+
+b)        服务粒度做小，服务单元小型化和微型化
+
+c)        核心思路，服务独立，各个服务之间不会相互影响或者影响很小，从开发到交付整个过程中都是遵循独立原则，在扩展性上有明显的优势。
+
+d)        独立运行的Spring项目
+
+e)        Spring Boot可以以jar包的形式来运行，运行一个SpringBoot项目我们只需要通过java -jar xx.jar类运行。非常方便。
+
+f)          
+
+g)        内嵌Servlet容器
+
+h)        Spring Boot可以内嵌Tomcat，这样我们无需以war包的形式部署项目。
+
+i)           
+
+j)          提供starter简化Maven配置
+
+k)        使用Spring或者SpringMVC我们需要添加大量的依赖，而这些依赖很多都是固定的，这里Spring Boot 通过starter能够帮助我们简化Maven配置。
+
+微服务能解决什么问题？
+l)          单一服务可以独立开发，一个服务或者一个模块就是一个独立的项目（模块隔离）
+
+m)      从开发到交付都可以独立进行，不存在“等待”（即相互独立，不需要考虑其他模块的进度）
+
+n)        各个项目之间可以建立通信（使用标准的接口和协议）例如多语言生态开发体系
+
+微服务有哪些弊端或者是挑战？
+o)        在人力和物力的要求上要提高，使用微服务思路必将产生很多的微服务项目，而且每一个有可能都是基于个性化定制的，在扩展性上绝对没有什么问题，但是每一个服务都可能有自己的一套开发策略，相对于传统的Monolish（这里可以理解为统一化）开发思路，在效率上就会有一定的局限性，因为统一化开发有一套相似的开发流程，所以两者相比各有优劣，在技术选型时还是需要根据实际情况来进行选择。
+
+ 
+
+spring IOC（DI/DL）回顾
+p)        一直以来对于spring 的IOC的理解局限在容器和依赖注入的层面上，经过研究和学习，下面可以将IOC总结为以下的两点：
+
+                        i.             DL：（依赖查找）：.getBean方法的运用相当于用来收集并注册实体bean，实际开发中有注解和基于XML的方式，比如自动扫描所有的实体类。
+
+                      ii.             DI：（依赖注入）：相对于DL，收集来的bean在BeanFactory中的组装依赖关系可以称之为DI。比如@Autowired自动装配。
+
+SpringBoot工作机制
+         最重要的就是springboot的@SpringBootApp;ication复合注解
+
+         @SpringBootApp;ication中最核心的三个Annotation
+
+         1、@Configuration   类似spring，本身其实就是一个IOC容器类
+
+         2、@EnableAutoConfiguration                收集所有的bean并注册
+
+         3、@ComponentScan   自动扫描和加载bean
+
+ 
+
+SpringBoot工作机制：
+
+------开始
+
+         1、收集各种条件和回调接口   通告started  开始启动
+
+         2、创建并准备Environment          通告environmentPrepared
+
+         3、创建并初始化ApplicationContext  例如加载配置，设置环境                                                 通告 contextPrepared、contextLoaded
+
+         4、refreshApplicationContext 完成启动   通告finished 执行CommanadLineRunner
+
+------结束
+
+ 
+
+ 
+
+Spring-boot-starter
+基于“约定优先于配置”的理念和实践，springboot提供了针对日常企业开发所需要的Spring-boot-starter自动配置依赖模块，这些依赖模块都以Spring-boot-starter开头为前缀
+
+例如：spring-boot-starter-logging 、spring-boot-starter-jdbc、spring-boot-starter-aop等
+
+在构建工具配置文件中要将所需要使用的某些依赖加进去。
+
+ 
+
+ 
+
+具体的还需要自己去实践完成，这里只是对于自己学习过程的一个记录
+
+参考资料：《Springboot揭秘-快速构建微服务体系》王福强
